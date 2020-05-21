@@ -6,115 +6,119 @@
     <title>Құпия видео чат</title>
     <!-- Use Bootswatch CSS from cdn -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body>
-
     <div class="container-fluid">
         <h1 class="text-center m-5">Видео байланыс</h1>
         <div class="row">
-            <div class="col-6">
-                <div class="card m-3">
-                    <div class="card-body">
-                        <div class="text-center">
-                            <video id="my-camera"  width="300" height="300" autoplay="autoplay" muted="true" class="center-block"></video>
-                            <span class="badge badge-primary">Сіз</span>
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card m-3">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <video id="my-camera"  width="200" height="200" autoplay="autoplay" muted="true" class="center-block"></video>
+                                    <span class="badge badge-primary">Сіз</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card m-3">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <video id="peer-camera" width="200" height="200" autoplay="autoplay" class="center-block"></video>
+                                    <span class="badge badge-success" id="connected_peer"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <span class="input-group-btn ml-1 mr-1">
+                                    <button id="call" class="btn btn-info">Хабарласу</button>
+                                </span>
+                                <input type="text" class="form-control" name="message" id="message" placeholder="Хабарлама">
+                                <span class="input-group-btn  ml-1 mr-1">
+                                    <button id="send-message" class="btn btn-success">Хабарлама жазу</button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-6">
-                <div class="card m-3">
-                    <div class="card-body">
-                        <div class="text-center">
-                            <video id="peer-camera" width="300" height="300" autoplay="autoplay" class="center-block"></video>
-                            <span class="badge badge-success" id="connected_peer"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card mt-5">
-                    <div class="card-body">
-                    <h1 class="text-center">
-                        <small>Досыңмен мына кодты бөліс</small>
-                    </h1>
-                    <!-- The ID of your current session -->
-                    <h4 class="text-center">
-                        <span id="peer-id-label"></span>
-                    </h4>
+            <div class="col-12 col-md-6">
+                <div class="row">
                     <div class="col-12">
-                        <div class="form-horizontal" id="connection-form">
-                            <fieldset>
-                                <legend>Байланыс жүйесі</legend>
-                                <div class="form-group">
-                                    <label for="name" class="col-2">Құпия код</label>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Лақап ат еңгізіңіз">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="peer_id" class="col-2">Құпия код еңгіз</label>
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" name="peer_id" id="peer_id" placeholder="Құпия код" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-                                        <!-- Show message if someone connected to the client -->
-                                        <div id="connected_peer_container" class="hidden">
-                                            Пайдаланушы сіздің сеансыңызға әлдеқашан қосылған. Жалғастыру үшін атын ғана еңгізіңіз!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-12 text-right">
-                                        <button id="connect-to-peer-btn" class="btn btn-primary">Жалғану</button>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div id="chat" class="hidden">
-                            <div id="message-container">
-                                <div class="form-group">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-2">
-                                                <label class="control-label m-1">Онлайн чат</label>
-                                            </div>
-                                            <div class="col-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <button id="call" class="btn btn-info">Хабарласу</button>
-                                                    </span>
-                                                    <input type="text" class="form-control" name="message" id="message" placeholder="Хабарлама">
-                                                    <span class="input-group-btn">
-                                                        <button id="send-message" class="btn btn-success">Хабарлама жазу</button>
-                                                    </span>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                            <h1 class="text-center">
+                                <small>Досыңмен мына кодты бөліс</small>
+                            </h1>
+                            <!-- The ID of your current session -->
+                            <h4 class="text-center">
+                                <span id="peer-id-label" onclick="copyToClipboard()"></span>
+                            </h4>
+                            <div class="col-12">
+                                <div class="form-horizontal" id="connection-form">
+                                    <fieldset>
+                                        <legend>Байланыс жүйесі</legend>
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Құпия код</label>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" name="name" id="name" placeholder="Лақап ат еңгізіңіз">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="peer_id">Құпия код еңгіз</label>
+                                                        <div class="col-12">
+                                                            <input type="text" class="form-control" name="peer_id" id="peer_id" placeholder="Құпия код" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div id="connected_peer_container" class="hidden">
+                                                Пайдаланушы сіздің сеансыңызға әлдеқашан қосылған. Жалғастыру үшін атын ғана еңгізіңіз!
+                                            </div>
+                                            <div class="col-lg-12 text-right">
+                                                <button id="connect-to-peer-btn" class="btn btn-primary">Жалғану</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div id="chat" class="hidden">
+                                    <div id="messages-container">
+                                        <div class="list-group" id="messages"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div id="messages-container">
-                                <div class="list-group" id="messages"></div>
-                            </div>
+                        </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="resources/js/peer.min.js"></script>
-    <script src="resources/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="resources/js/peer.min.js"></script>
+    <script src="resources/js/script.js"></script>
 </body>
 
 </html>

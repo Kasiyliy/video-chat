@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * The iceServers on this example are public and can be used for your project.
      */
     var peer = new Peer({
-        host: "192.168.1.148",
+        host: "0.0.0.0",
         port: 9000,
         path: '/peerjs',
         debug: 3,
@@ -215,3 +215,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     });
 }, false);
+
+
+function copyToClipboard() {
+    var copyText = document.getElementById("peer-id-label");
+    var textArea = document.createElement("textarea");
+    textArea.value = copyText.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    textArea.remove();
+    info();
+}
+
+function info(){
+    toastr.info('Код сақталды!')
+}
